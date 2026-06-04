@@ -1,0 +1,111 @@
+/* Корзина */
+.cart {
+  padding: 3rem 0;
+}
+
+.cart h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cart-list {
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-info h4 {
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+.price {
+  font-weight: 700;
+  color: #1d9bf0;
+  margin-bottom: 0.2rem;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.qty-btn:hover {
+  background: #f0f0f0;
+}
+
+.remove-btn {
+  background: #f44336;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.remove-btn:hover {
+  background: #d32f2f;
+}
+
+/* Итого и оформление заказа */
+.cart-total {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem 1.2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: right;
+}
+
+.cart-total h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.total-amount {
+  font-weight: 700;
+  color: #1d9bf0;
+}
+
+.checkout-btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+}

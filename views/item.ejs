@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+  <title>Магазин — Товар</title>
+  <link rel="stylesheet" href="/styles/index.css" />
+
+</head>
+<body>
+
+    <%- include('blocks/header') -%>
+
+  <main class="main">
+                  <% if(id_product != undefined){ %>
+                    <section class="product-detail">
+                      <div class="container">
+                        <div class="product-card big">
+                          <img src="<%= img %>" alt="Товар" />
+                          <div class="product-info">
+                            <h2><%= name %></h2>
+                            
+                            <p class="price"><%= prise %> ₽</p>
+                            
+                            <div class="actions">
+                              <button class="btn cart-btn">В корзину</button>
+                              <button class="btn fav-btn">В избранное</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div><%= Coment %></div>
+                      </div>
+                      
+                    </section>
+                    <% } else { %>
+                      <p>Ошибка, товар не найден</p>
+                      <% } %>
+  </main>
+
+    <%- include('blocks/footer') -%>
+
+</body>
+</html>

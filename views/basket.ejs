@@ -1,0 +1,85 @@
+<!-- <!DOCTYPE html> -->
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+  <title>Магазин — Корзина</title>
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/basket.css" />
+</head>
+<body>
+    <% let sum = 0 %>
+    <%- include('blocks/header') -%>
+  <main class="main">
+    <section class="cart">
+        <h3>Ваша корзина <%= render_data.user.name %> <%= render_data.user.otc %></h3>
+
+      <div class="container">
+          
+              <div class="cart-list">
+                <!-- Товар 1 -->
+
+                <% for(let i = 0; i<render_data.len; i++){ %>
+                <div class="cart-item">
+                  <img src="<%= render_data.products[i].img %>" alt="Товар 1" />
+                  <div class="cart-info">
+                    <h4><%= render_data.products[i].name %></h4>
+                    <p class="price"><%= render_data.products[i].prise %> ₽</p>
+                    <div class="qty">
+                      <button class="qty-btn" onclick="
+                        const price = document.getElementById('number<%= render_data.products[i].id_product %>');
+                        // price.innerText;
+                        if(price.innerText != 0)
+                          price.innerText -= 1
+                        ">−</button>
+                      <span class="qty-value" id="number<%= render_data.products[i].id_product %>"><%= render_data.products[i].number %></span>
+                      <button class="qty-btn" 
+                      onclick="
+                        const price2 = document.getElementById('number<%= render_data.products[i].id_product %>');
+                        if(price2.innerText != 100)
+                          price2.innerText = Number(price2.innerText) + 1
+                        "
+                      >+</button>
+                    </div>
+                  </div>
+
+                  <button class="btn remove-btn" type="submit" onclick="deleteProductFromBasket(
+        '<%= render_data.user.id_user %>',
+        '<%= render_data.products[i].id_product %>',
+        this)">Удалить</button>
+  </div>
+                </div>
+                <% sum += Number(render_data.products[i].prise)*Number(render_data.products[i].number)
+              } %>
+          
+
+        <div class="cart-total">
+          <h4>Итого: <span class="total-amount"><%= sum %>₽</span></h4>
+          <button class="btn checkout-btn">Оформить заказ</button>
+        </div>
+     
+      </div>
+    </section>
+  </main>
+
+    <%- include('blocks/footer') -%>
+
+<script>
+  async function deleteProductFromBasket(id_user, id_product, btn) {
+    const result = confirm("Ви уверены что хотите удалить этот товар?")
+    if (result){
+    const resp = await fetch(`/basket/${id_user}`, {
+      method: "DELETE"
+    });
+  }
+    // if (resp.ok) {
+    //   // удаляем весь элемент из DOM
+    //   btn.closest('.cart-item').remove();
+    // } else {
+    //   alert("Ошибка удаления из корзины");
+    // }
+  }
+</script>
+
+</body>
+</html>
