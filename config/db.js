@@ -231,5 +231,5 @@ export default d_b
 // d_b.add_user("Елизовета","Каймасова",4,"lizok","123","88005553535")
 // d_b.create_table();
 // d_b.add_shop_point("Uhbkmybwf")
-// console.log(await d_b.get_data("Shop_point"))
+// console.log(await d_b.get_data("Shop_point", "Id", 4))
 // console.log(await d_b.get_data("Order_statuses"))

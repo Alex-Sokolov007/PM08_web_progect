@@ -16,7 +16,7 @@
             <h2>Заведения</h2>
             <div class="shops-wraper">
                 <% for(let i = 0; i < len; i++){ %>
-                    <div class="shop"><img src="<%= img[i] %>" alt="логотип title[i]"><p><%= title[i] %></p></div>
+                    <a href="/shop/<%= id[i] %>"><div class="shop"><img src="<%= img[i] %>" alt="логотип title[i]"><p><%= title[i] %></p></div></a>
                     <% } %>
             </div>
         </div>

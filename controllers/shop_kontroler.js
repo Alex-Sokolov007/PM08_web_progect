@@ -4,22 +4,27 @@ import d_b from "../config/db.js"
 import { match } from "path-to-regexp"
 
 
-class Index_controler{
+class Shop_controler{
     async rendering_page(req, res){
-        const Shops = await d_b.get_data("Shop_point")
+        const Shop = await d_b.get_data("Shop_point", "Id", req.params.id)
+        
         const data = {
-            len: Shops.length,
-            id: [],
-            title: [],
-            img: []
-        }
-        for(let i=0; i<Shops.length; i++){
-            data.title.push(Shops[i].Title)
-            data.img.push(Shops[i].Img)
-            data.id.push(Shops[i].Id)
+            id: Shop[0].Id,
+            title: Shop[0].Title,
+            img: Shop[0].Img,
+            adres: Shop[0].Adress,
+            Hot_phone: Shop[0].Hot_phone,
+            products: []
         }
 
-        res.render("index", data)
+        let products = await d_b.get_data("Products_of_shop_point", "Id_shop_point", req.params.id)
+                                            
+        for(let i = 0; i<products.length; i++){
+            let product = await d_b.get_data("Products", "Id", products[i].Id_product)
+            data.products.push(product[0])
+        }
+        // console.log(data.products[0].Price)
+        res.render("shop", data)
 
     }
 
@@ -56,4 +61,4 @@ class Index_controler{
 
 }
 
-export default new Index_controler
+export default new Shop_controler

@@ -7,9 +7,8 @@ class Reg_controler{
         res.render("reg")
     }
     async new_user(req, res){
-        d_b.addUser(req.body.user_name, req.body.user_sure_name, req.body.user_otch,req.body.email,req.body.phone,req.body.login,req.body.password,1)
-        // console.log(await d_b.get_data())
-        
+        d_b.add_user(req.body.user_name, req.body.user_sure_name, 4,req.body.login,req.body.password,req.body.phone)
+
         res.render("reg")
     }
 }
