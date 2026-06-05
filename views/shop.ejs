@@ -1,44 +1,24 @@
-
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/styles/index.css">
+    <title>Магазин <%= title %></title>
 </head>
 <body>
+    <img src="<%= img %>" alt="изображение <%= title %>">
+    <h1><%= title %></h1>
+    <p>Адрес: <%= adres %></p>
+    <p>Тел: <%= Hot_phone %></p>
 
-<%- include('blocks/header', {active_user:active_user}) -%>
-
-<section class="hero">
-    <img src="<%= img %>" alt="">
-    <h2><%= title %></h2>
-    <p><%= adres %></p>
-    <p>Телефон: <%= Hot_phone %></p>
-</section>
-
-<section class="section">
-    <h2 class="section-title">Товары</h2>
-
-    <div class="products-grid">
-        <% for(let i = 0; i < products.length; i++){ %>
-            <div class="product-card">
-                <img src="<%= products[i].Img %>" alt="">
-                <div class="product-info">
-                    <h3><%= products[i].Name %></h3>
-                    <p class="price"><%= products[i].Price %> ₽</p>
-                    <br>
-                    <a href="/item/<%= products[i].Id %>/?user=<%= active_user %>">
-                        <button class="btn-orange">Подробнее</button>
-                    </a>
-                </div>
-            </div>
+    <% for(let i = 0; i<products.length; i++){ %>
+        <div>
+            <img src="<%= products[i].Img %>" alt="">
+            <h3><%= products[i].Name %></h3>
+            <p><%= products[i].Price %></p>
+            <button>Подробнее</button>
+        </div>
         <% } %>
-    </div>
-</section>
-
-<%- include('blocks/footer') -%>
 
 </body>
 </html>

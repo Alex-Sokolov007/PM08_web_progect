@@ -1,32 +1,17 @@
-
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
-    <link rel="stylesheet" href="/styles/index.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
-
-<% if(quantity == 1){ %>
-    <div><h1>Неверный логин или пароль</h1></div>
-    <% } %>
-
-<div class="form-page">
-    <div class="form-card">
-        <h2>Вход в аккаунт</h2>
-
-        <form method="POST" action="/login">
-            <input type="text" name="login" placeholder="Логин">
-            <input type="password" name="password" placeholder="Пароль">
-            <button class="btn-orange" type="submit">Войти</button>
-        </form>
-
-        <br>
-        <p>Нет аккаунта? <a href="/registration">Регистрация</a></p>
-    </div>
-</div>
-
+    <form action="">
+        <input type="text">
+        <input type="password">
+        <button>Войти</button>
+        <p>Нет аккаунта? <a href="/registration">регистрация</a></p>
+    </form>
 </body>
 </html>

@@ -1,23 +1,9 @@
-
-<header class="header">
-    <div class="header-container">
-        <div class="logo">
-            <div class="logo-circle">S</div>
-            <div>
-                <h1>Shopingud</h1>
-                <p>Доставка еды и товаров</p>
-            </div>
+<header>
+        <div><p>ООО "Медиа победа"</p> <img src="" alt="Картинка"></div>
+        <div>
+            <ul>
+                <li><a href="">Партнерcкая программа</a></li>
+                <li><a href=""><button>Войти</button></a></li>
+            </ul>
         </div>
-        <nav class="nav">
-            <a href="/?user=<%= active_user %>">Главная</a>
-            <a href="/basket/<%= active_user %>">Корзина</a>
-            <a href="/favorite/<%= active_user %>">Избранное</a>
-            <% if(active_user == 0){ %>
-            <a href="/login"><button class="btn-orange">Войти</button></a>
-            <% }else{ %>
-                <a href="/?user=0"><button>Выйти</button></a>
-                <a href="/user_profile/<%= active_user %>">Личный кабинет</a>
-                <% } %>
-        </nav>
-    </div>
-</header>
+    </header>

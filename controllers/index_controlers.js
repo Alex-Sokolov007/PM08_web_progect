@@ -6,10 +6,8 @@ import { match } from "path-to-regexp"
 
 class Index_controler{
     async rendering_page(req, res){
-        const user = req.query.user
         const Shops = await d_b.get_data("Shop_point")
         const data = {
-            active_user: user,
             len: Shops.length,
             id: [],
             title: [],

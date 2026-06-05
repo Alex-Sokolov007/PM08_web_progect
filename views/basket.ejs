@@ -1,46 +1,35 @@
-
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина</title>
-    <link rel="stylesheet" href="/styles/index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
+  <title>Магазин — Корзина</title>
+  <link rel="stylesheet" href="/styles/index.css" />
+  <link rel="stylesheet" href="/styles/basket.css" />
 </head>
 <body>
-
-<% if(id != 0){ %>
+    <% let sum = 0 %>
     <%- include('blocks/header') -%>
+  <main class="main">
+    <section class="cart">
+        <h3>Ваша корзина  <%= user.User_name %></h3>
 
-    <section class="section">
-        <h2 class="section-title">Корзина пользователя <%= user.User_name %></h2>
-
-        <% if(len == 0){ %> 
-            <p>Ваша корзина пуста </p>
-
-        <% } else { %>   
-        <div class="cart-items">
-            <% for(let i = 0; i < len; i++){ %>
-                <div class="cart-item">
-                    <img src="<%= products[i].Img %>" alt="">
-                    <div>
-                        <h3><%= products[i].Name %></h3>
-                        <p class="price"><%= products[i].Price %> ₽</p>
-                        <p>Количество: <%= products[i].Quantity %> шт.</p>
-                    </div>
-                </div>
-            <% } %>
+        <div>
+          <% for(let i = 0; i<len; i++){ %>
+            <div>
+              <img src="<%= products[i].Img %>" alt="">
+              <p><%= products[i].Name %></p>
+              <p><%= products[i].Price %></p>
+              <p><%= products[i].Quantity %> шт.</p>
+            </div>
+          <% } %>
         </div>
-        <% } %>
-
+     
+      
     </section>
-<% } else{ %>
-<%- include('blocks/header', {active_user: 0}) -%>
-    <h1>Корзина пуста, необходима авторизация</h1>
-    <a href="/login"><button>Войти</button></a>
+  </main>
 
-<% } %>
-<%- include('blocks/footer') -%>
+    <%- include('blocks/footer') -%>
 
 </body>
 </html>
