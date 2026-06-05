@@ -11,23 +11,35 @@
 
 <%- include('blocks/header') -%>
 
-<section class="section">
-    <h2 class="section-title">Корзина пользователя <%= user.User_name %></h2>
+<% if(id != 0){ %>
+    <section class="section">
+        <h2 class="section-title">Корзина пользователя <%= user.User_name %></h2>
 
-    <div class="cart-items">
-        <% for(let i = 0; i < len; i++){ %>
-            <div class="cart-item">
-                <img src="<%= products[i].Img %>" alt="">
-                <div>
-                    <h3><%= products[i].Name %></h3>
-                    <p class="price"><%= products[i].Price %> ₽</p>
-                    <p>Количество: <%= products[i].Quantity %> шт.</p>
+        <% if(len == 0){ %> 
+            <p>Ваша корзина пуста </p>
+
+        <% } else { %>   
+        <div class="cart-items">
+            <% for(let i = 0; i < len; i++){ %>
+                <div class="cart-item">
+                    <img src="<%= products[i].Img %>" alt="">
+                    <div>
+                        <h3><%= products[i].Name %></h3>
+                        <p class="price"><%= products[i].Price %> ₽</p>
+                        <p>Количество: <%= products[i].Quantity %> шт.</p>
+                    </div>
                 </div>
-            </div>
+            <% } %>
+        </div>
         <% } %>
-    </div>
-</section>
 
+    </section>
+<% } else{ %>
+
+    <h1>Корзина пуста, необходима авторизация</h1>
+    <a href="/login"><button>Войти</button></a>
+
+<% } %>
 <%- include('blocks/footer') -%>
 
 </body>

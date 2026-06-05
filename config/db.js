@@ -227,6 +227,8 @@ const d_b = new DB
 
 
 export default d_b
+// const hash = await HASH_FUNCTION.hashPassword("123")
+// console.log(await HASH_FUNCTION.verifyPassword('123', hash))
 // d_b.add_order(3,4,2,5,"ул. Карла Маркса 27")
 // d_b.add_user("Елизовета","Каймасова",4,"lizok","123","88005553535")
 // d_b.create_table();

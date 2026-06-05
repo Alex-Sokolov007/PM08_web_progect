@@ -16,9 +16,12 @@ class Basket_controler{
        console.log('стопапупа')
     }
     async render_page_busket(req, res){
+        if(req.params.id != 0){
         const db_data = await d_b.get_data('Users', 'Id', req.params.id)
         const basket_data = await d_b.get_data("User_busket", "id_user", req.params.id)
         let render_data = {
+            active_user: req.params.id,
+            id: db_data[0].Id,
             len: basket_data.length,
             user: db_data[0],
             products: []
@@ -28,8 +31,10 @@ class Basket_controler{
             product_data[0].Quantity = basket_data[i].Quantity
             render_data.products.push(product_data[0])
         }
-        console.log(render_data)
+        // console.log(render_data)
         res.render('basket', render_data)
+    }
+        else res.render('basket', {id:0})
     }
 }
 
