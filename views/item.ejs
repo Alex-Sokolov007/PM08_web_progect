@@ -9,25 +9,33 @@
 </head>
 <body>
 
-<%- include('blocks/header') -%>
+<%- include('blocks/header', {active_user: active_user}) -%>
 
 <section class="product-detail">
-    <% if(id_product != undefined){ %>
+    
+    <%try{ if(Id != undefined && Id != 0){ %>
         <div class="product-big">
-            <img src="<%= img %>" alt="">
+            <img src="<%= Img %>" alt="">
             <div class="product-info">
-                <h2><%= name %></h2>
+                <h2><%= Name %></h2>
                 <br>
-                <p class="price"><%= prise %> ₽</p>
+                <p class="price"><%= Price %> ₽</p>
                 <br>
-                <p><%= Coment %></p>
-                <br>
+                <p>Цена за <%= Measurement %> <%= Type_of_measurement %></p>
+            <form action="/item/<%= Id %>/?user=<%= active_user %>" method="post">
+                <%if(in_basket){ %>
+                    <h2>Товар уже добавлен</h2>
+                <%}else{%>   
                 <button class="btn-orange">Добавить в корзину</button>
+                <% } %>
+            </form>
             </div>
         </div>
     <% } else { %>
         <h2>Товар не найден</h2>
-    <% } %>
+    <% }}catch{ %>
+        <h2>Товар не найден</h2>
+   <% } %>
 </section>
 
 <%- include('blocks/footer') -%>

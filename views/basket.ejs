@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<%- include('blocks/header') -%>
-
 <% if(id != 0){ %>
+    <%- include('blocks/header') -%>
+
     <section class="section">
         <h2 class="section-title">Корзина пользователя <%= user.User_name %></h2>
 
@@ -35,7 +35,7 @@
 
     </section>
 <% } else{ %>
-
+<%- include('blocks/header', {active_user: 0}) -%>
     <h1>Корзина пуста, необходима авторизация</h1>
     <a href="/login"><button>Войти</button></a>
 

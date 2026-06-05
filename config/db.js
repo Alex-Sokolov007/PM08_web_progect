@@ -206,6 +206,21 @@ add_product(name, price, type_of_measurement, measurement, img) {
   });
 }
 
+add_user_busket(id_user, id_product, quantity) {
+  const sql = `
+    INSERT INTO User_busket (Id_user, Id_product, Quantity)
+    VALUES (?, ?, ?)
+  `;
+
+  db.run(sql, [id_user, id_product, quantity], function (err) {
+    if (err) {
+      console.error("Ошибка при добавлении товара в корзину:", err.message);
+    } else {
+      console.log(`Товар добавлен в корзину, ID: ${this.lastID}`);
+    }
+  });
+}
+
 add_order(id_user_employee, id_user, pay_status, order_status, adress) {
   const sql = `
     INSERT INTO Orders (Id_user_employee, Id_user, pay_status, Order_status, Adress)
