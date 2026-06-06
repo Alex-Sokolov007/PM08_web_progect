@@ -6,9 +6,11 @@ import { match } from "path-to-regexp"
 
 class Shop_controler{
     async rendering_page(req, res){
+        const user = req.query.user
         const Shop = await d_b.get_data("Shop_point", "Id", req.params.id)
         
         const data = {
+            active_user: user,
             id: Shop[0].Id,
             title: Shop[0].Title,
             img: Shop[0].Img,

@@ -4,22 +4,26 @@ import d_b from "../config/db.js"
 // import { render } from "ejs"
 
 class Basket_controler{
-    async new_product_in_busket(req, res){
-        // console.log(req.body)
-        res.send("Пост запрос")
+    async post_rederect(req, res){
+        if(req.body.type_req == "delete"){
+            d_b.delete_qwery("User_busket", "Id", req.body.basket_id)
+            res.redirect(`/basket/${req.params.id}`)
+        }else if(req.body.type_req == "new_order"){
+            console.log('Заявка оформленна, а я спать')
+            res.redirect(`/basket/${req.params.id}`)
+        }
+        
         // d_b.add_User_To_Basket(req.params.id, req.params.product_name, req.params.number_product)
     }
-    async update_busket(req,res){
-        console.log('123')
-    }
-    async delete_item_busket(req, res){
-       console.log('стопапупа')
-    }
     async render_page_busket(req, res){
+        if(req.params.id != 0){
         const db_data = await d_b.get_data('Users', 'Id', req.params.id)
         const basket_data = await d_b.get_data("User_busket", "id_user", req.params.id)
         let render_data = {
+            active_user: req.params.id,
+            id: db_data[0].Id,
             len: basket_data.length,
+            basket_data: basket_data,
             user: db_data[0],
             products: []
         }
@@ -28,9 +32,12 @@ class Basket_controler{
             product_data[0].Quantity = basket_data[i].Quantity
             render_data.products.push(product_data[0])
         }
-        console.log(render_data)
+        // console.log(render_data)
         res.render('basket', render_data)
     }
+        else res.render('basket', {id:0})
+    }
+    
 }
 
 export default new Basket_controler

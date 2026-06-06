@@ -1,10 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/index.css"/>
 
-<form action="/user_profile/<%= id_user %>" method="post">
-    <p>фамилия</p><input type="text" name="fam" id="" value="<%= fam %>"><br>
-    <p>имя</p><input type="text" name="name" id="" value="<%= name %>"><br>
-    <p>отчество</p><input type="text" name="otch" id="" value="<%= otc %>"><br>
-    <p>почта</p><input type="text" name="email" id="" value="<%= email %>"><br>
-    <p>тел.</p><input type="text" name="phone" id="" value="<%= phone %>"><br>
-    <p>логин</p><input type="text" name="login" id="" value="<%= login %>"><br>
+    <title>Document</title>
+</head>
+<body>
+
+<%- include('blocks/header', {active_user: Id}) -%>
+
+<% if(Id != 0) {%>
+    <form action="/user_profile/<%= Id %>" method="post">
+        <p>фамилия</p><input type="text" name="User_surname" id="" value="<%= User_surname %>"><br>
+        <p>имя</p><input type="text" name="User_name" id="" value="<%= User_name %>"><br>
+        <p>тел.</p><input type="text" name="Phone" id="" value="<%= Phone %>"><br>
+        <p>логин</p><input type="text" name="Login" id="" value="<%= Login %>"><br>
+        <p>Введите старый пароль<input type="password" name="old_password"></p>
+        <p>Введите новый пароль (если смена пароля не нужна, оставьте поле пустым)<input type="password" name="new_password"></p>
     <button type="submit">Обновить данные</button>
-</form>
+    </form>
+<% }else{ %>
+    <H1>Пользователь не найден</H1>
+    <a href="/"><button>На главную</button></a>
+<% } %>
+
+<%- include('blocks/footer') -%>
+
+</body>
+</html>
+
+

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <title>admin</title>
+</head>
+<body>
+<%- include('blocks/header', {active_user: 1}) -%>
+    <button id="shopsBtn" onclick="look_shops_table()">Магазины</button>
+
+<table id="shopsTable">
+  <tr>
+    <th>Id</th>
+    <th>Название</th>
+    <th>адрес</th>
+    <th>тел.</th>
+    <!-- <th>логотип</th> -->
+  </tr>
+<% for(let i = 0; i < Shops.len; i++){ %>
+  <tr>
+    <td><input type="number" readonly value="<%= Shops[i].Id %>"></td>
+    <td><input type="text" value="<%= Shops[i].Title %>"></td>
+    <td><input type="text" value="<%= Shops[i].Adress %>"></td>
+    <td><input type="number" value="<%= Shops[i].Hot_phone %>"></td>
+    <!-- <td><img src="<%= Shops[i].Img %>" alt=""></td> -->
+  </tr>
+<% } %>
+<tr>
+    <td rowspan="4"><button onclick="addShop()">Добавть</button></td>
+</tr>
+</table>
+
+    <button id="usersBtn" onclick="look_users_table()">Пользователи</button>
+<!-- <div id="usersTable"> -->
+    
+    <table id="usersTable">
+        <tr>
+            <th>Id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Роль</th>
+            <th>Login</th>
+            <th>Телефон</th>
+        </tr>
+        <% for(let j = 0; j < Users.len; j++){ %>
+    <tr id="Users_info" class="<%= Users[j].Role %>">
+        <td><input  type="number" readonly value="<%= Users[j].Id %>"></td>
+        <td><input type="text" value="<%= Users[j].User_name %>"></td>
+        <td><input type="text" value="<%= Users[j].User_surname %>"></td>
+        <td><input type="text" class="role-value" readonly value="<%= Users[j].Role %>"></td>
+        <td><input type="text" value="<%= Users[j].Login %>"></td>
+        <td><input type="number" value="<%= Users[j].Phone %>"></td>
+    </tr>
+    <% } %>
+        <td rowspan="4"><button onclick="addUser()">Добавть</button></td>
+    </table>
+<!-- </div> -->
+
+<div class="add_window" id='add_window_user' style="display: none;">
+    <div class="close_add_window">
+        <button onclick="close_add_window()">X</button>
+    </div>
+    <h2>добавить пользователя</h2>
+    <form action="" method="post">
+        <input type="text" name="User_name" id="" placeholder="Имя" required>
+        <input type="text" name="User_surname" id="" placeholder="Фамилия" required>
+    <select name="Roles" id="Roles_select">
+        <% for(let role = 0; role < Roles.len; role++){%>
+            <option value="<%= Roles[role].Id %>"><%= Roles[role].Role %></option>
+        <% } %>
+    </select>
+        <input type="text" name="Login" placeholder="Логин" required>
+        <input type="password" name="Password" placeholder="Пароль" required>
+        <input type="number" name="Phone" placeholder="Телефон" required>
+        <Button type="submit">Добавть</Button>
+    </form>
+</div>
+
+<div class="add_window" id='add_window_shop' style="display: none;">
+    <div class="close_add_window">
+        <button onclick="close_add_window()">X</button>
+    </div>
+    <h2>добавить магазин</h2>
+    <form action="" method="post">
+        <input type="text" name="Title" id="" placeholder="Название магазина" required>
+        <input type="text" name="Adress" id="" placeholder="Адрес" required>
+        <input type="number" name="Hot_phone" id="" placeholder="Телефон" required>
+        <input type="file" name="Img" id="">
+        <Button type="submit">Добавть</Button>
+    </form>
+</div>
+
+<script>
+    function look_shops_table(){
+const table = document.getElementById('shopsTable');
+    const btn = document.getElementById('shopsBtn');
+    
+    if (table.style.display === 'none') {
+        table.style.display = 'table';
+        btn.textContent = 'Скрыть магазины';
+    } else {
+        table.style.display = 'none';
+        btn.textContent = 'Магазины';
+    }
+    }
+
+    function addShop(){
+        document.getElementById("add_window_shop").style.display = 'flex'
+        document.getElementById("add_window_user").style.display = 'none'
+
+    }
+
+    function close_add_window(){
+        document.querySelectorAll(".add_window").forEach(element => {
+            element.style.display = 'none'
+        });  
+    }
+
+    function look_users_table(){
+        const table = document.getElementById('usersTable');
+    const btn = document.getElementById('usersBtn');
+    
+    if (table.style.display === 'none') {
+        table.style.display = 'table';
+        btn.textContent = 'Скрыть пользователей';
+    } else {
+        table.style.display = 'none';
+        btn.textContent = 'Пользователи';
+    }
+}
+
+    function addUser(){
+        document.getElementById("add_window_user").style.display = 'flex'
+        document.getElementById("add_window_shop").style.display = 'none'
+
+    }
+
+</script>
+<%- include('blocks/footer') -%>
+
+</body>
+</html>

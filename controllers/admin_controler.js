@@ -3,9 +3,25 @@ import { app, PORT } from "../config/config.js"
 import d_b from "../config/db.js"
 import HASH_FUNCTION from "../config/hash.js"
 
-class Login_controler{
+class Admin_controler{
     async rendering_page(req, res){
-        res.render("login", {quantity: 0})
+        let Shops = await d_b.get_data("Shop_point")
+        Shops.len = Shops.length
+        let users = await d_b.get_data("Users")
+        let Roles = await d_b.get_data("Roles")
+        Roles.len = Roles.length
+        users.len = users.length
+        for(let i = 0; i<users.len; i++)
+            for(let j = 0; j < Roles.length; j++)
+                if(users[i].Role == Roles[j].Id)
+                    users[i].Role = Roles[j].Role
+
+        const render_data = {
+            Shops: Shops,
+            Users: users,
+            Roles: Roles
+        }
+        res.render("admin", render_data)
     }
     async logining_user(req, res){
         const user = await d_b.get_data("Users", "Login", req.body.login)
@@ -35,4 +51,4 @@ class Login_controler{
     }
 }
 
-export default new Login_controler
+export default new Admin_controler

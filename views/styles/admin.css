@@ -1,0 +1,26 @@
+.add_window{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    width: 30vw;
+    height: 40vh;
+    bottom: 0;
+    right: 0;
+    border: solid;
+}
+
+.add_window form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7%;
+}
+
+.close_add_window{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

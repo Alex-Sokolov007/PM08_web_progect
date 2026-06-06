@@ -1,35 +1,76 @@
-<!-- <!DOCTYPE html> -->
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
-  <title>Магазин — Корзина</title>
-  <link rel="stylesheet" href="/styles/index.css" />
-  <link rel="stylesheet" href="/styles/basket.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-    <% let sum = 0 %>
+
+<% if(id != 0){ %>
     <%- include('blocks/header') -%>
-  <main class="main">
-    <section class="cart">
-        <h3>Ваша корзина  <%= user.User_name %></h3>
 
-        <div>
-          <% for(let i = 0; i<len; i++){ %>
-            <div>
-              <img src="<%= products[i].Img %>" alt="">
-              <p><%= products[i].Name %></p>
-              <p><%= products[i].Price %></p>
-              <p><%= products[i].Quantity %> шт.</p>
-            </div>
-          <% } %>
+    <section class="section">
+        <h2 class="section-title">Корзина пользователя <%= user.User_name %></h2>
+
+        <% if(len == 0){ %> 
+            <p>Ваша корзина пуста </p>
+
+        <% } else { %>   
+        <div class="cart-items">
+            <% for(let i = 0; i < len; i++){ %>
+                <div class="cart-item">
+                    <img src="<%= products[i].Img %>" alt="">
+                    <div>
+                        <h3><%= products[i].Name %></h3>
+                        <p class="price"><%= products[i].Price %> ₽</p>
+                        <button onclick="decreaseQuantity(this)">-</button>
+                            <p>Количество: <span class="quantity-value"><%= products[i].Quantity %></span> шт.</p>
+                        <button onclick="increaseQuantity(this)">+</button>
+                    </div>
+                    <form action="/basket/<%= user.Id %>" method="post">
+                        <input type="hidden" name="type_req" value="delete">
+                        <input type="hidden" name="basket_id" value="<%= basket_data[i].Id %>">
+                        <button type="submit">Удалить</button>
+                    </form>
+                    </div>
+            <% } %>
         </div>
-     
-      
+        <% } %>
+            <form action="/basket/<%= user.Id %>" method="post">
+                <input type="hidden" name="type_req" value="new_order">
+                <button type="submit">Оформить заказ</button>
+            </form>
     </section>
-  </main>
+<% } else{ %>
+<%- include('blocks/header', {active_user: 0}) -%>
+    <h1>Корзина пуста, необходима авторизация</h1>
+    <a href="/login"><button>Войти</button></a>
 
-    <%- include('blocks/footer') -%>
+<% } %>
+<%- include('blocks/footer') -%>
+
+
+<script>
+function increaseQuantity(button) {
+    const quantitySpan = button.parentElement.querySelector('.quantity-value');
+    let quantity = parseInt(quantitySpan.textContent);
+    quantity++;
+    quantitySpan.textContent = quantity;
+}
+
+function decreaseQuantity(button) {
+    const quantitySpan = button.parentElement.querySelector('.quantity-value');
+    let quantity = parseInt(quantitySpan.textContent);
+    if (quantity > 1) {
+        quantity--;
+        quantitySpan.textContent = quantity;
+    }
+}
+</script>
+
 
 </body>
 </html>

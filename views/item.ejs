@@ -1,43 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
-  <title>Магазин — Товар</title>
-  <link rel="stylesheet" href="/styles/index.css" />
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Товар</title>
+  <link rel="stylesheet" href="/styles/index.css"/>
 </head>
 <body>
 
-    <%- include('blocks/header') -%>
+<%- include('blocks/header', {active_user: active_user}) -%>
 
-  <main class="main">
-                  <% if(id_product != undefined){ %>
-                    <section class="product-detail">
-                      <div class="container">
-                        <div class="product-card big">
-                          <img src="<%= img %>" alt="Товар" />
-                          <div class="product-info">
-                            <h2><%= name %></h2>
-                            
-                            <p class="price"><%= prise %> ₽</p>
-                            
-                            <div class="actions">
-                              <button class="btn cart-btn">В корзину</button>
-                              <button class="btn fav-btn">В избранное</button>
-                            </div>
-                          </div>
-                        </div>
-                        <div><%= Coment %></div>
-                      </div>
-                      
-                    </section>
-                    <% } else { %>
-                      <p>Ошибка, товар не найден</p>
-                      <% } %>
-  </main>
+<section class="product-detail">
+    
+    <%try{ if(Id != undefined && Id != 0){ %>
+        <div class="product-big">
+            <img src="<%= Img %>" alt="">
+            <div class="product-info">
+                <h2><%= Name %></h2>
+                <br>
+                <p class="price"><%= Price %> ₽</p>
+                <br>
+                <p>Цена за <%= Measurement %> <%= Type_of_measurement %></p>
+            <form action="/item/<%= Id %>/?user=<%= active_user %>" method="post">
+                <%if(in_basket){ %>
+                    <h2>Товар уже добавлен</h2>
+                <%}else{%>   
+                <button class="btn-orange">Добавить в корзину</button>
+                <% } %>
+            </form>
+            </div>
+        </div>
+    <% } else { %>
+        <h2>Товар не найден</h2>
+    <% }}catch{ %>
+        <h2>Товар не найден</h2>
+   <% } %>
+</section>
 
-    <%- include('blocks/footer') -%>
+<%- include('blocks/footer') -%>
 
 </body>
 </html>
