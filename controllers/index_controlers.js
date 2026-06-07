@@ -11,11 +11,13 @@ class Index_controler{
         const Shops = await d_b.get_data("Shop_point")
         const data = {
             active_user: user,
+            role: req.query.role,
             len: Shops.length,
             id: [],
             title: [],
             img: []
         }
+        console.log(data.role)
         for(let i=0; i<Shops.length; i++){
             data.title.push(Shops[i].Title)
             data.img.push(Shops[i].Img)

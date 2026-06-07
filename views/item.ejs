@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%- include('blocks/header', {active_user: active_user}) -%>
+<%- include('blocks/header', {active_user: active_user, role: role}) -%>
 
 <section class="product-detail">
     
@@ -22,7 +22,7 @@
                 <p class="price"><%= Price %> ₽</p>
                 <br>
                 <p>Цена за <%= Measurement %> <%= Type_of_measurement %></p>
-            <form action="/item/<%= Id %>/?user=<%= active_user %>" method="post">
+            <form action="/item/<%= Id %>/?user=<%= active_user %>&role=<%= role %>" method="post">
                 <%if(in_basket){ %>
                     <h2>Товар уже добавлен</h2>
                 <%}else{%>   

@@ -14,6 +14,7 @@ class Item_controler{
         data_db[0].Type_of_measurement = type_of_Measurment[0].Type_of_measurement
         data_db[0].active_user=req.query.user
         data_db[0].in_basket = req.query.in_basket
+        data_db[0].role = req.query.role
         res.render('item', data_db[0])
     }
     async add_prodict_in_basket(req, res){
@@ -25,7 +26,7 @@ class Item_controler{
             }
         }
             await d_b.add_user_busket(req.query.user,req.params.id,1)
-            res.redirect(`/basket/${req.query.user}/?user=${req.query.user}`)
+            res.redirect(`/basket/${req.query.user}/?user=${req.query.user}&role=${req.query.role}`)
         
     }
 }

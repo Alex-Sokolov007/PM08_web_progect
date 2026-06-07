@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%- include('blocks/header', {active_user: active_user}) -%>
+<%- include('blocks/header', {active_user: active_user, role: role}) -%>
 
 <section class="hero">
     <h2>Быстрая доставка еды и товаров</h2>
@@ -21,7 +21,7 @@
 
     <div class="shops-wraper">
         <% for(let i = 0; i < len; i++){ %>
-            <a href="/shop/<%= id[i] %>/?user=<%= active_user %>">
+            <a href="/shop/<%= id[i] %>/?user=<%= active_user %>&role=<%= role %>">
                 <div class="shop">
                     <img src="<%= img[i] %>" alt="<%= title[i] %>">
                     <div class="shop-info">

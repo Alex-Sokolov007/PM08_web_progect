@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<%- include('blocks/header', {active_user: 1, role: 2}) -%>
+
+<h1>Товары</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Img</th>
+    </tr>
+    <% for(let i = 0; i<len_products; i++) {%>
+        <tr>
+            <td><input type="number" name="" readonly value="<%= products[i].Id %>"></td>
+            <td><input type="text" value="<%= products[i].Name %>"></td>
+            <td><input type="number" value="<%= products[i].Price %>"></td>
+            <td><input type="text" value="<%= products[i].Img %>"></td>
+        </tr>
+    <% } %>
+    <button>Добавить</button>
+</table>
+
+<h1>Заказы</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Курьер</th>
+            <th>Заказчик</th>
+            <th>Статус оплаты</th>
+            <th>Адрес</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i < orders.length; i++) { %>
+            <tr>
+                <td><input type="number" readonly value="<%= orders[i].Id %>"></td>
+                <!-- Предполагаем, что Id_user_employee — это курьер -->
+                <td><input type="number" readonly value="<%= orders[i].Id_user_employee %>"></td>
+                <!-- Id_user — заказчик -->
+                <td><input type="number" readonly value="<%= orders[i].Id_user %>"></td>
+                <td><input type="number" readonly value="<%= orders[i].pay_status %>"></td>
+                <td><input type="text" readonly value="<%= orders[i].Adress %>"></td>   
+            </tr>
+        <% } %>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -9,17 +9,22 @@
             </div>
         </div>
         <nav class="nav">
-            <a href="/?user=<%= active_user %>">Главная</a>
-            <a href="/basket/<%= active_user %>">Корзина</a>
-            <a href="/favorite/<%= active_user %>">Избранное</a>
+            <a href="/?user=<%= active_user %>&role=<%= role %>">Главная</a>
+            <a href="/basket/<%= active_user %>/?role=<%= role %>">Корзина</a>
+            <a href="/favorite/<%= active_user %>&role=<%= role %>">Избранное</a>
             <% if(active_user == 0){ %>
             <a href="/login"><button class="btn-orange">Войти</button></a>
             <% }else{ %>
                 <a href="/?user=0"><button>Выйти</button></a>
-                <a href="/user_profile/<%= active_user %>">Личный кабинет</a>
-                <% if(active_user == 1){ %>
+                <a href="/user_profile/<%= active_user %>/?role=<%= role %>">Личный кабинет</a>
+                <% if(role == 1){ %>
                 <a href="/admin">Панель администратора</a>
+               <% }else if(role == 2){%>
+                <a href="/Shop_imploee/<%= active_user %>/?role=<%= role %>">Панель сотрудника точки</a>
+                <% }else if(role == 3){%>
+                <a href="/Kurier/<%= active_user %>/?role=<%= role %>">Панель курьера</a>
                <% }} %>
+                    
         </nav>
     </div>
 </header>

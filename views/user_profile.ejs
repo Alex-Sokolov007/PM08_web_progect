@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%- include('blocks/header', {active_user: Id}) -%>
+<%- include('blocks/header', {active_user: Id, role: role}) -%>
 
 <% if(Id != 0) {%>
     <form action="/user_profile/<%= Id %>" method="post">

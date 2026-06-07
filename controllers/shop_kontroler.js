@@ -11,6 +11,7 @@ class Shop_controler{
         
         const data = {
             active_user: user,
+            role: req.query.role,
             id: Shop[0].Id,
             title: Shop[0].Title,
             img: Shop[0].Img,

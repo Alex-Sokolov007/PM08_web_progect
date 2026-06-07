@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<%- include('blocks/header', {active_user:active_user}) -%>
+<%- include('blocks/header', {active_user:active_user, role: role}) -%>
 
 <section class="hero">
     <img src="<%= img %>" alt="">
@@ -29,7 +29,7 @@
                     <h3><%= products[i].Name %></h3>
                     <p class="price"><%= products[i].Price %> ₽</p>
                     <br>
-                    <a href="/item/<%= products[i].Id %>/?user=<%= active_user %>">
+                    <a href="/item/<%= products[i].Id %>/?user=<%= active_user %>&role=<%= role %>">
                         <button class="btn-orange">Подробнее</button>
                     </a>
                 </div>

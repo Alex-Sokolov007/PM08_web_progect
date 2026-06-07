@@ -22,6 +22,7 @@ class Basket_controler{
         let render_data = {
             active_user: req.params.id,
             id: db_data[0].Id,
+            role: req.query.role,
             len: basket_data.length,
             basket_data: basket_data,
             user: db_data[0],
@@ -35,7 +36,7 @@ class Basket_controler{
         // console.log(render_data)
         res.render('basket', render_data)
     }
-        else res.render('basket', {id:0})
+        else res.render('basket', {id:0, role: req.query.role})
     }
     
 }

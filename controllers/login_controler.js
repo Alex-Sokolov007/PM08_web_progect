@@ -28,7 +28,7 @@ class Login_controler{
             data.img.push(Shops[i].Img)
             data.id.push(Shops[i].Id)
         }
-        res.redirect(`/?user=${user[0].Id}`);
+        res.redirect(`/?user=${user[0].Id}&role=${user[0].Role}`);
         // res.render(`index`, data)
         }
     }
