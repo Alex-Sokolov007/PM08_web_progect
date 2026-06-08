@@ -18,14 +18,30 @@
         <th>Img</th>
     </tr>
     <% for(let i = 0; i<len_products; i++) {%>
-        <tr>
-            <td><input type="number" name="" readonly value="<%= products[i].Id %>"></td>
-            <td><input type="text" value="<%= products[i].Name %>"></td>
-            <td><input type="number" value="<%= products[i].Price %>"></td>
-            <td><input type="text" value="<%= products[i].Img %>"></td>
-        </tr>
+        <form action="/Shop_imploee/<%= shop_emploeer.Id %>" method="post">
+            <tr>
+                <td><input type="number" name="Id" readonly value="<%= products[i].Id %>"></td>
+                <td><input type="text" name="Name" value="<%= products[i].Name %>"></td>
+                <td><input type="number" name="Price" value="<%= products[i].Price %>"></td>
+                <td><input type="text" name="Img" value="<%= products[i].Img %>"></td>
+                <td><button type="submit">Сохранить</button></td>
+                <td><input type="text" name="type" value="products" hidden></td>
+
+            </tr>
+        </form>
     <% } %>
-    <button>Добавить</button>
+        <form action="/Shop_imploee/<%= shop_emploeer.Id %>" method="post">
+    <tr>
+        <td><input type="number" name="Id" required readonly value="<%= products[products.length-1].Id + 1 %>"></td>
+        <td><input type="text" name="Name" required value=""></td>
+        <td><input type="number" name="Price" required value=""></td>
+        <td><input type="text" name="Img" value=""></td>
+        <td><button type="submit">Добавить</button></td>
+        <td><input type="text" name="type" value="new_products" hidden></td>
+        <td><input type="text" name="Id_Shop" hidden value="<%= shop_emploeer.shop.Id %>"></td>
+
+    </tr>
+        </form>
 </table>
 
 <h1>Заказы</h1>
@@ -43,16 +59,34 @@
     </thead>
     <tbody>
         <% for (let i = 0; i < orders.length; i++) { %>
+        <form action="/Shop_imploee/<%= shop_emploeer.Id %>" method="post">
             <tr>
-                <td><input type="number" readonly value="<%= orders[i].Id %>"></td>
+                <td><input type="number" name="Id" readonly value="<%= orders[i].Id %>"></td>
                 <!-- Предполагаем, что Id_user_employee — это курьер -->
-                <td><input type="number" readonly value="<%= orders[i].Id_user_employee %>"></td>
+                <td><input type="number" name="Id_user_employee" value="<%= orders[i].Id_user_employee %>"></td>
                 <!-- Id_user — заказчик -->
-                <td onmouseout="hide_info_zakazchik('<%= orders[i].Id_user %>')" onmouseover="look_info_zakazchik('<%= orders[i].Id_user %>')"><input type="number" readonly value="<%= orders[i].Id_user %>"></td>
-                <td><input type="number" readonly value="<%= orders[i].pay_status %>"></td>
-                <td><input type="text" readonly value="<%= orders[i].Order_status %>"></td>
-                <td><input type="text" readonly value="<%= orders[i].Adress %>"></td>
+                <td onmouseout="hide_info_zakazchik('<%= orders[i].Id_user %>')" onmouseover="look_info_zakazchik('<%= orders[i].Id_user %>')"><input name="Id_user" type="number" value="<%= orders[i].Id_user %>"></td>
+                <td><input name="pay_status" type="number" value="<%= orders[i].pay_status %>"></td>
                 
+<td> <select name="Order_status" id="status_<%= orders[i].Id %>">
+        <% for(let j = 0; j < order_statuses.length; j++){ %>
+            <option 
+                value="<%= order_statuses[j].Id %>"
+                <% if (order_statuses[j].Status === orders[i].Order_status){ %>
+                    selected
+                <% } %>
+            >
+                <%= order_statuses[j].Status %>
+            </option>
+        <% } %>
+    </select>
+</td>
+
+                <td><input name="Adress" type="text" value="<%= orders[i].Adress %>"></td>
+                <td><input type="text" name="Id_Shop" hidden value="<%= orders[i].Id_Shop %>"></td>
+                <td><input type="text" hidden name="type" value="order"></td>
+                
+                <td><button type="submit">Сохранить</button></td>
                 <div class="user_info" id="user_<%= orders[i].Id_user %>">
                     <%= zakazchici[i].Id %>
                     <%= zakazchici[i].User_name %>
@@ -62,6 +96,7 @@
                 </div>
 
             </tr>
+        </form>            
         <% } %>
     </tbody>
 </table>

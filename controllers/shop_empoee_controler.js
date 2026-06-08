@@ -36,29 +36,95 @@ class Shop_emploee_controler{
 
         const order_statuses = await d_b.get_data("Order_statuses")
         
+        data.order_statuses = order_statuses
+
         for(let i = 0; i<data.orders.length; i++){
             for(let j = 0; j<order_statuses.length; j++)
                 if(data.orders[i].Order_status == order_statuses[j].Id)
                     data.orders[i].Order_status = order_statuses[j].Status
         }
         
-        console.log(data)
+        // console.log(data)
         res.render("shop_emploee", data)
     }
-    async update_info(req, res){
-        const old_password = req.body.old_password
-        const user = await d_b.get_data("Users", 'Id', req.params.id)
-        if(HASH_FUNCTION.verifyPassword(old_password, user[0].Password)){
-            if(req.body.new_password != ''){
-            const new_password = HASH_FUNCTION.hashPassword(req.body.new_password)
-            d_b.update_qwery("Users", "Password", new_password, "Id", req.params.id)
+    async update_order_info(req, res){
+        console.log(req.body)
+        switch (req.body.type){
+            case "order":
+                await d_b.update_qwery(
+        "Orders",           // table_name
+        "Id_user_employee", // column_name
+        req.body.Id_user_employee, // column_value
+        "Id",               // serdg_column_name
+        req.body.Id             // serdg_column_value
+                    );
+                    
+                await  d_b.update_qwery(
+                        "Orders",
+                        "Id_user",
+                        req.body.Id_user,
+                        "Id",
+                        req.body.Id
+                    );
+
+                await d_b.update_qwery(
+                        "Orders",
+                        "pay_status",
+                        req.body.pay_status,
+                        "Id",
+                        req.body.Id
+                    );
+                    
+                await d_b.update_qwery(
+                        "Orders",
+                        "Order_status",
+                        req.body.Order_status,
+                        "Id",
+                        req.body.Id
+                    );
+                    
+                await d_b.update_qwery(
+                        "Orders",
+                        "Adress",
+                        req.body.Adress,
+                        "Id",
+                        req.body.Id
+                    );
+                break;
+            
+            case "products":
+                await d_b.update_qwery(
+    "Products",           // table_name
+    "Name",               // column_name
+    req.body.Name,     // column_value
+    "Id",                 // serdg_column_name
+    req.body.Id        // serdg_column_value
+                    );
+
+                await d_b.update_qwery(
+                    "Products",
+                    "Price",
+                    req.body.Price,
+                    "Id",
+                    req.body.Id
+                    );  
+
+                await d_b.update_qwery(
+                    "Products",
+                    "Img",
+                    req.body.Img,
+                    "Id",
+                    req.body.Id
+                    );
+                break;
+            
+            case "new_products":
+                await d_b.add_product(req.body.Name, req.body.Price, 1, 1, req.body.Img)
+                await d_b.add_products_of_shop_point(req.body.Id_Shop, req.body.Id)
+                break
             }
-            d_b.update_qwery("Users", "User_name", req.body.User_name, "Id", req.params.id)
-            d_b.update_qwery("Users", "User_surname", req.body.User_surname, "Id", req.params.id)
-            d_b.update_qwery("Users", "Login", req.body.Login, "Id", req.params.id)
-            d_b.update_qwery("Users", "Phone", req.body.Phone, "Id", req.params.id)
-        }
-        res.redirect(`/user_profile/${req.params.id}`)
+
+        res.redirect(`/Shop_imploee/${req.params.id}/?role=2`)
     }
 }
 

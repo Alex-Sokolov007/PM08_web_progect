@@ -29,6 +29,21 @@ create_table(){
 
 }
 
+add_products_of_shop_point(id_shop_point, id_product) {
+  const sql = `
+    INSERT INTO Products_of_shop_point (Id_shop_point, Id_product)
+    VALUES (?, ?)
+  `;
+
+  db.run(sql, [id_shop_point, id_product], function (err) {
+    if (err) {
+      console.error("Ошибка при добавлении товара в точку магазина:", err.message);
+    } else {
+      console.log(`Товар добавлен в точку магазина, ID: ${this.lastID}`);
+    }
+  });
+}
+
 update_qwery(table_name, column_name, column_value, serdg_column_name, serdg_column_value) {
   const sql = `
     UPDATE ${table_name}
@@ -193,7 +208,7 @@ add_shop_employee(id_user, id_shop_point) {
 
 add_product(name, price, type_of_measurement, measurement, img) {
   const sql = `
-    INSERT INTO Products (Name, Priсe, Type_of_measurement, Measurement, Img)
+    INSERT INTO Products (Name, Price, Type_of_measurement, Measurement, Img)
     VALUES (?, ?, ?, ?, ?)
   `;
 
