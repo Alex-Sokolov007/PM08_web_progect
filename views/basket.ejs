@@ -26,14 +26,14 @@
                     <div>
                         <h3><%= products[i].Name %></h3>
                         <p class="price"><%= products[i].Price %> ₽</p>
-                        <button onclick="decreaseQuantity(this)">-</button>
+                        <button onclick="decreaseQuantity(this)" class="btn-orange">-</button>
                             <p>Количество: <span class="quantity-value"><%= products[i].Quantity %></span> шт.</p>
-                        <button onclick="increaseQuantity(this)">+</button>
+                        <button onclick="increaseQuantity(this)" class="btn-orange">+</button>
                     </div>
                     <form action="/basket/<%= user.Id %>" method="post">
                         <input type="hidden" name="type_req" value="delete">
                         <input type="hidden" name="basket_id" value="<%= basket_data[i].Id %>">
-                        <button type="submit">Удалить</button>
+                        <button class="delete_btn" type="submit">Удалить</button>
                     </form>
                     </div>
             <% } %>
@@ -48,13 +48,13 @@
                 <input type="text" name="Adress" required placeholder="Адресс" value="">
                 <input type="text" name="Id_Shop" hidden value="<%= products[0].shop %>">
                 
-                <button type="submit">Оформить заказ</button>
+                <button type="submit" class="btn-orange">Оформить заказ</button>
             </form>
     </section>
 <% } else{ %>
 <%- include('blocks/header', {active_user: 0}) -%>
     <h1>Корзина пуста, необходима авторизация</h1>
-    <a href="/login"><button>Войти</button></a>
+    <a href="/login"><button class="btn-orange">Войти</button></a>
 
 <% } %>
 <%- include('blocks/footer') -%>

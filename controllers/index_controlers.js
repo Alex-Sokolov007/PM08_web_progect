@@ -17,7 +17,6 @@ class Index_controler{
             title: [],
             img: []
         }
-        console.log(data.role)
         for(let i=0; i<Shops.length; i++){
             data.title.push(Shops[i].Title)
             data.img.push(Shops[i].Img)

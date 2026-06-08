@@ -190,11 +190,60 @@ a{
     flex-direction:column;
     gap:14px;
 }
-
-.form-card input{
+input{
     padding:14px;
     border:1px solid #ddd;
     border-radius:12px;
+}
+
+.delete_btn {
+  background-color: #ff5252;           /* Красный цвет для кнопки удаления */
+  color: #ffffff;                      /* Белый текст */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;                            /* Отступ между иконкой и текстом (если есть) */
+  white-space: nowrap;
+}
+
+.delete_btn:hover {
+  background-color: #d32f2f;           /* Более тёмный оттенок при наведении */
+}
+
+.delete_btn:active {
+  transform: scale(0.98);             /* Лёгкое уменьшение при нажатии */
+  background-color: #b71c1c;
+}
+
+.delete_btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.Error_div{
+    position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Опционально: базовые стили для видимости */
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 12px 20px;
+  border: 1px solid #ef9a9a;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  max-width: 800px;
+  text-align: center;
 }
 
 .product-detail{
