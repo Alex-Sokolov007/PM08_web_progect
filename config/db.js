@@ -236,13 +236,13 @@ add_user_busket(id_user, id_product, quantity) {
   });
 }
 
-add_order(id_user_employee, id_user, pay_status, order_status, adress) {
+add_order(id_user_employee, id_user, pay_status, order_status, adress, id_shop) {
   const sql = `
-    INSERT INTO Orders (Id_user_employee, Id_user, pay_status, Order_status, Adress)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO Orders (Id_user_employee, Id_user, pay_status, Order_status, Adress, Id_Shop)
+    VALUES (?, ?, ?, ?, ?, ?)
   `;
 
-  db.run(sql, [id_user_employee, id_user, pay_status, order_status, adress], function (err) {
+  db.run(sql, [id_user_employee, id_user, pay_status, order_status, adress, id_shop], function (err) {
     if (err) {
       console.error("Ошибка при добавлении заказа:", err.message);
     } else {

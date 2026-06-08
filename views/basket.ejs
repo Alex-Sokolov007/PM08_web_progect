@@ -41,6 +41,13 @@
         <% } %>
             <form action="/basket/<%= user.Id %>" method="post">
                 <input type="hidden" name="type_req" value="new_order">
+                <input type="text" name="Id_user_eployee" hidden value="<%= products[0].empoyee %>">
+                <input type="text" name="Id_user" hidden value="<%= user.Id %>">
+                <input type="text" name="pay_status" hidden value="1">
+                <input type="text" name="Order_status" hidden value="1">
+                <input type="text" name="Adress" required placeholder="Адресс" value="">
+                <input type="text" name="Id_Shop" hidden value="<%= products[0].shop %>">
+                
                 <button type="submit">Оформить заказ</button>
             </form>
     </section>

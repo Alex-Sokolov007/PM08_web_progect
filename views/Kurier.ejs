@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Заказы</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Курьер</th>
+            <th>Заказчик</th>
+            <th>Статус оплаты</th>
+            <th>Статус заявки</th>
+
+            <th>Адрес</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (let i = 0; i < orders.length; i++) { %>
+        <form action="/Kurier/<%= User.Id %>" method="post">
+            <tr>
+                <td><input type="number" name="Id" readonly value="<%= orders[i].Id %>"></td>
+                <!-- Предполагаем, что Id_user_employee — это курьер -->
+                <td><input type="number" name="Id_user_employee" value="<%= orders[i].Id_user_employee %>"></td>
+                <!-- Id_user — заказчик -->
+                <td><input name="Id_user" type="number" value="<%= orders[i].Id_user %>"></td>
+                <td><input name="pay_status" type="number" value="<%= orders[i].pay_status %>"></td>
+                
+<td> <select name="Order_status" id="status_<%= orders[i].Id %>">
+        <% for(let j = 0; j < order_statuses.length; j++){ %>
+            <option 
+                value="<%= order_statuses[j].Id %>"
+                <% if (order_statuses[j].Id == orders[i].Order_status){ %>
+                    selected
+                <% } %>
+            >
+                <%= order_statuses[j].Status %>
+            </option>
+        <% } %>
+    </select>
+</td>
+
+                <td><input name="Adress" type="text" value="<%= orders[i].Adress %>"></td>
+                <td><input type="text" name="Id_Shop" hidden value="<%= orders[i].Id_Shop %>"></td>
+                <td><input type="text" hidden name="type" value="order"></td>
+                
+                <td><button type="submit">Сохранить</button></td>
+               
+
+            </tr>
+        </form>            
+        <% } %>
+    </tbody>
+</table>
+</body>
+</html>

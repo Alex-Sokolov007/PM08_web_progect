@@ -6,7 +6,9 @@ import HASH_FUNCTION from "../config/hash.js"
 class User_profile_controler{
     async Chek_user_profile(req, res){
         const db_data = await d_b.get_data("Users", 'Id', req.params.id)
+        const orders = await d_b.get_data("Orders", "Id_user", req.params.id)
         db_data[0].role = req.query.role
+        db_data[0].orders = orders
         if(db_data.length == 0)
             res.render('user_profile', {Id: 0, role:req.query.role})
         else
