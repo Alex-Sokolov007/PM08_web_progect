@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/shop_emploee.css">
 </head>
 <body>
 <%- include('blocks/header', {active_user: 1, role: 2}) -%>
@@ -35,6 +36,8 @@
             <th>Курьер</th>
             <th>Заказчик</th>
             <th>Статус оплаты</th>
+            <th>Статус заявки</th>
+
             <th>Адрес</th>
         </tr>
     </thead>
@@ -45,13 +48,41 @@
                 <!-- Предполагаем, что Id_user_employee — это курьер -->
                 <td><input type="number" readonly value="<%= orders[i].Id_user_employee %>"></td>
                 <!-- Id_user — заказчик -->
-                <td><input type="number" readonly value="<%= orders[i].Id_user %>"></td>
+                <td onmouseout="hide_info_zakazchik('<%= orders[i].Id_user %>')" onmouseover="look_info_zakazchik('<%= orders[i].Id_user %>')"><input type="number" readonly value="<%= orders[i].Id_user %>"></td>
                 <td><input type="number" readonly value="<%= orders[i].pay_status %>"></td>
-                <td><input type="text" readonly value="<%= orders[i].Adress %>"></td>   
+                <td><input type="text" readonly value="<%= orders[i].Order_status %>"></td>
+                <td><input type="text" readonly value="<%= orders[i].Adress %>"></td>
+                
+                <div class="user_info" id="user_<%= orders[i].Id_user %>">
+                    <%= zakazchici[i].Id %>
+                    <%= zakazchici[i].User_name %>
+                    <%= zakazchici[i].User_surname %>
+                    <%= zakazchici[i].Login %>
+                    <%= zakazchici[i].Phone %>
+                </div>
+
             </tr>
         <% } %>
     </tbody>
 </table>
+
+
+
+<script>
+    function look_info_zakazchik(Id){
+    const userInfo = document.getElementById(`user_${Id}`);
+    
+    userInfo.style.left = (event.clientX + window.scrollX) + 'px';
+    userInfo.style.top = (event.clientY + window.scrollY) + 'px';
+    
+    userInfo.style.display = 'flex';
+    }
+
+    function hide_info_zakazchik(Id){
+    document.getElementById(`user_${Id}`).style.display = "none";
+}
+
+</script>
 
 </body>
 </html>

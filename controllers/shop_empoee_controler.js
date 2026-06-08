@@ -15,6 +15,7 @@ class Shop_emploee_controler{
             shop_emploeer: shop_emploeer[0],
             orders: orders,
             products: [],
+            zakazchici: [],
             len_products: null,
             len_orders: orders.length,
         }
@@ -26,6 +27,19 @@ class Shop_emploee_controler{
         for(let i = 0; i<products.length; i++){
             let product = await d_b.get_data("Products", "Id", products[i].Id_product)
             data.products.push(product[0])
+        }
+
+        for(let i = 0; i<orders.length; i++){
+            let zakazchic = await d_b.get_data("Users", "Id", orders[i].Id_user)
+            data.zakazchici.push(zakazchic[0])
+        }
+
+        const order_statuses = await d_b.get_data("Order_statuses")
+        
+        for(let i = 0; i<data.orders.length; i++){
+            for(let j = 0; j<order_statuses.length; j++)
+                if(data.orders[i].Order_status == order_statuses[j].Id)
+                    data.orders[i].Order_status = order_statuses[j].Status
         }
         
         console.log(data)
