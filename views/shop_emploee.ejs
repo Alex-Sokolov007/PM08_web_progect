@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/styles/shop_emploee.css">
+    <link rel="stylesheet" href="/styles/index.css">
 </head>
 <body>
-<%- include('blocks/header', {active_user: 1, role: 2}) -%>
+<%- include('blocks/header', {active_user: 2, role: 2}) -%>
 
-<h1>Товары</h1>
+<h1 class="emploee-title">Товары</h1>
 <table>
     <tr>
         <th>Id</th>
@@ -24,7 +25,7 @@
                 <td><input type="text" name="Name" value="<%= products[i].Name %>"></td>
                 <td><input type="number" name="Price" value="<%= products[i].Price %>"></td>
                 <td><input type="text" name="Img" value="<%= products[i].Img %>"></td>
-                <td><button type="submit">Сохранить</button></td>
+                <td class="btn-save"><button type="submit" class="btn-grey">Сохранить</button></td>
                 <td><input type="text" name="type" value="products" hidden></td>
 
             </tr>
@@ -36,7 +37,7 @@
         <td><input type="text" name="Name" required value=""></td>
         <td><input type="number" name="Price" required value=""></td>
         <td><input type="text" name="Img" value=""></td>
-        <td><button type="submit">Добавить</button></td>
+        <td class="btn-save"><button type="submit" class="btn-grey">Добавить</button></td>
         <td><input type="text" name="type" value="new_products" hidden></td>
         <td><input type="text" name="Id_Shop" hidden value="<%= shop_emploeer.shop.Id %>"></td>
 
@@ -44,7 +45,7 @@
         </form>
 </table>
 
-<h1>Заказы</h1>
+<h1 class="emploee-title">Заказы</h1>
 <table>
     <thead>
         <tr>
@@ -86,7 +87,7 @@
                 <td><input type="text" name="Id_Shop" hidden value="<%= orders[i].Id_Shop %>"></td>
                 <td><input type="text" hidden name="type" value="order"></td>
                 
-                <td><button type="submit">Сохранить</button></td>
+                <td><button type="submit" class="btn-grey">Сохранить</button></td>
                 <div class="user_info" id="user_<%= orders[i].Id_user %>">
                     <%= zakazchici[i].Id %>
                     <%= zakazchici[i].User_name %>

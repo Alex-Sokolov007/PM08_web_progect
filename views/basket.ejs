@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Корзина</title>
     <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/basket.css">
 </head>
 <body>
 
@@ -23,14 +24,16 @@
             <% for(let i = 0; i < len; i++){ %>
                 <div class="cart-item">
                     <img src="<%= products[i].Img %>" alt="">
-                    <div>
-                        <h3><%= products[i].Name %></h3>
-                        <p class="price"><%= products[i].Price %> ₽</p>
-                        <button onclick="decreaseQuantity(this)" class="btn-orange">-</button>
-                            <p>Количество: <span class="quantity-value"><%= products[i].Quantity %></span> шт.</p>
+                    <div class="quantity">
+                        <div>
+                            <h3><%= products[i].Name %></h3>
+                            <p class="price"><%= products[i].Price %> ₽</p>
+                        </div>
+                        <p class="quantity-text">Количество: <span class="quantity-value"><%= products[i].Quantity %></span> шт.</p>
+                        <button onclick="decreaseQuantity(this)" class="btn-orange btn-quantity">-</button>    
                         <button onclick="increaseQuantity(this)" class="btn-orange">+</button>
                     </div>
-                    <form action="/basket/<%= user.Id %>" method="post">
+                    <form action="/basket/<%= user.Id %>" method="post" class="btn-delete">
                         <input type="hidden" name="type_req" value="delete">
                         <input type="hidden" name="basket_id" value="<%= basket_data[i].Id %>">
                         <button class="delete_btn" type="submit">Удалить</button>
@@ -48,13 +51,15 @@
                 <input type="text" name="Adress" required placeholder="Адресс" value="">
                 <input type="text" name="Id_Shop" hidden value="<%= products[0].shop %>">
                 
-                <button type="submit" class="btn-orange">Оформить заказ</button>
+                <button type="submit" class="btn-orange btn">Оформить заказ</button>
             </form>
     </section>
 <% } else{ %>
 <%- include('blocks/header', {active_user: 0}) -%>
-    <h1>Корзина пуста, необходима авторизация</h1>
-    <a href="/login"><button class="btn-orange">Войти</button></a>
+    <div class="basket-err">
+        <h1>Корзина пуста, необходима авторизация</h1>
+        <a href="/login"><button class="btn-orange btn-enter">Войти</button></a>
+    </div>
 
 <% } %>
 <%- include('blocks/footer') -%>
@@ -77,7 +82,6 @@ function decreaseQuantity(button) {
     }
 }
 </script>
-
 
 </body>
 </html>

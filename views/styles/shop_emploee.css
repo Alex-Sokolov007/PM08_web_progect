@@ -9,3 +9,13 @@
     align-items: center;
     justify-content: center;
 }
+
+.emploee-title{
+    margin: 14px;
+}
+
+.btn-save{
+    display: flex;
+    justify-content: center;
+    
+}

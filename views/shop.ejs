@@ -12,10 +12,12 @@
 <%- include('blocks/header', {active_user:active_user, role: role}) -%>
 
 <section class="hero">
-    <img src="<%= img %>" alt="">
-    <h2><%= title %></h2>
-    <p><%= adres %></p>
-    <p>Телефон: <%= Hot_phone %></p>
+    <img src="<%= img %>" alt="" class="hero-img">
+    <div class="hero-text">
+        <h2><%= title %></h2>
+        <p><%= adres %></p>
+        <p>Телефон: <%= Hot_phone %></p>
+    </div>
 </section>
 
 <section class="section">

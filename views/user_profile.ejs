@@ -12,16 +12,17 @@
 <%- include('blocks/header', {active_user: Id, role: role}) -%>
 
 <% if(Id != 0) {%>
+<section class="section">
     <form action="/user_profile/<%= Id %>" method="post">
-        <p>фамилия</p><input type="text" name="User_surname" id="" value="<%= User_surname %>"><br>
-        <p>имя</p><input type="text" name="User_name" id="" value="<%= User_name %>"><br>
-        <p>тел.</p><input type="text" name="Phone" id="" value="<%= Phone %>"><br>
-        <p>логин</p><input type="text" name="Login" id="" value="<%= Login %>"><br>
+        <p>Фамилия</p><input type="text" name="User_surname" id="" value="<%= User_surname %>"><br>
+        <p>Имя</p><input type="text" name="User_name" id="" value="<%= User_name %>"><br>
+        <p>Телефон</p><input type="text" name="Phone" id="" value="<%= Phone %>"><br>
+        <p>Логин</p><input type="text" name="Login" id="" value="<%= Login %>"><br>
         <p>Введите старый пароль<input type="password" name="old_password"></p>
         <p>Введите новый пароль (если смена пароля не нужна, оставьте поле пустым)<input type="password" name="new_password"></p>
-    <button type="submit">Обновить данные</button>
+    <button type="submit" class="btn-orange btn">Обновить данные</button>
     </form>
-
+</section>
 
 <% }else{ %>
     <H1>Пользователь не найден</H1>

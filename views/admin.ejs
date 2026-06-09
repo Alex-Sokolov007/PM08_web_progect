@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/admin.css">
+    <link rel="stylesheet" href="/styles/index.css">
     <title>admin</title>
 </head>
 <body>
 <%- include('blocks/header', {active_user: 1, role: 1}) -%>
-    <button id="shopsBtn" onclick="look_shops_table()">Магазины</button>
+    <button id="shopsBtn" onclick="look_shops_table()" class="btn-grey btn-admin">Магазины</button>
 
 <table id="shopsTable">
   <tr>
@@ -29,11 +30,11 @@
   </tr>
 <% } %>
 <tr>
-    <td rowspan="4"><button onclick="addShop()">Добавть</button></td>
+    <td rowspan="4"><button onclick="addShop()" class="btn-orange">Добавить</button></td>
 </tr>
 </table>
 
-    <button id="usersBtn" onclick="look_users_table()">Пользователи</button>
+    <button id="usersBtn" onclick="look_users_table()" class="btn-grey btn-admin">Пользователи</button>
 <!-- <div id="usersTable"> -->
     
     <table id="usersTable">
@@ -55,7 +56,7 @@
         <td><input type="number" value="<%= Users[j].Phone %>"></td>
     </tr>
     <% } %>
-        <td rowspan="4"><button onclick="addUser()">Добавть</button></td>
+        <td rowspan="4"><button onclick="addUser()" class="btn-orange">Добавить</button></td>
     </table>
 <!-- </div> -->
 

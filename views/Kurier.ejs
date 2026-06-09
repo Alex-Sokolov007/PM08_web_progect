@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="/styles/shop_emploee.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Заказы</h1>
+    <%- include('blocks/header', {active_user: 3, role: 3}) -%>
+    <h1 class="emploee-title">Заказы</h1>
 <table>
     <thead>
         <tr>
@@ -48,7 +51,7 @@
                 <td><input type="text" name="Id_Shop" hidden value="<%= orders[i].Id_Shop %>"></td>
                 <td><input type="text" hidden name="type" value="order"></td>
                 
-                <td><button type="submit">Сохранить</button></td>
+                <td><button type="submit" class="btn-grey">Сохранить</button></td>
                
 
             </tr>
