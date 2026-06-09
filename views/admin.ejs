@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/styles/admin.css">
     <link rel="stylesheet" href="/styles/index.css">
-    <title>admin</title>
+    <title>Админ</title>
 </head>
 <body>
 <%- include('blocks/header', {active_user: 1, role: 1}) -%>
@@ -60,12 +60,12 @@
     </table>
 <!-- </div> -->
 
-<div class="add_window" id='add_window_user' style="display: none;">
+<div class="add_window add-user"  id='add_window_user' style="display: none;">
     <div class="close_add_window">
-        <button onclick="close_add_window()">X</button>
+        <button onclick="close_add_window()" class="btn-close">X</button>
     </div>
-    <h2>добавить пользователя</h2>
-    <form action="" method="post">
+    <h2 class="title-add-user">Добавить пользователя</h2>
+    <form action="" method="post" class="form-add">
         <input type="text" name="User_name" id="" placeholder="Имя" required>
         <input type="text" name="User_surname" id="" placeholder="Фамилия" required>
     <select name="Roles" id="Roles_select">
@@ -76,21 +76,21 @@
         <input type="text" name="Login" placeholder="Логин" required>
         <input type="password" name="Password" placeholder="Пароль" required>
         <input type="number" name="Phone" placeholder="Телефон" required>
-        <Button type="submit">Добавть</Button>
+        <Button type="submit" class="btn-orange">Добавить</Button>
     </form>
 </div>
 
 <div class="add_window" id='add_window_shop' style="display: none;">
     <div class="close_add_window">
-        <button onclick="close_add_window()">X</button>
+        <button onclick="close_add_window()" class="btn-close">X</button>
     </div>
-    <h2>добавить магазин</h2>
-    <form action="" method="post">
+    <h2>Добавить магазин</h2>
+    <form action="" method="post" class="form-add">
         <input type="text" name="Title" id="" placeholder="Название магазина" required>
         <input type="text" name="Adress" id="" placeholder="Адрес" required>
-        <input type="number" name="Hot_phone" id="" placeholder="Телефон" required>
+        <input type="number" name="Hot_phone" id="phone" placeholder="Телефон" required>
         <input type="file" name="Img" id="">
-        <Button type="submit">Добавть</Button>
+        <Button type="submit" class="btn-orange">Добавить</Button>
     </form>
 </div>
 
@@ -138,7 +138,6 @@ const table = document.getElementById('shopsTable');
         document.getElementById("add_window_shop").style.display = 'none'
 
     }
-
 </script>
 <%- include('blocks/footer') -%>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Панель сотрудника точки</title>
     <link rel="stylesheet" href="/styles/shop_emploee.css">
     <link rel="stylesheet" href="/styles/index.css">
 </head>
@@ -66,7 +66,9 @@
                 <!-- Предполагаем, что Id_user_employee — это курьер -->
                 <td><input type="number" name="Id_user_employee" value="<%= orders[i].Id_user_employee %>"></td>
                 <!-- Id_user — заказчик -->
-                <td onmouseout="hide_info_zakazchik('<%= orders[i].Id_user %>')" onmouseover="look_info_zakazchik('<%= orders[i].Id_user %>')"><input name="Id_user" type="number" value="<%= orders[i].Id_user %>"></td>
+                <td onmouseout="hide_info_zakazchik('<%= orders[i].Id_user %>')" onmouseover="look_info_zakazchik('<%= orders[i].Id_user %>')">
+                    <input name="Id_user" type="number" value="<%= orders[i].Id_user %>">
+                </td>
                 <td><input name="pay_status" type="number" value="<%= orders[i].pay_status %>"></td>
                 
 <td> <select name="Order_status" id="status_<%= orders[i].Id %>">
@@ -112,6 +114,10 @@
     userInfo.style.top = (event.clientY + window.scrollY) + 'px';
     
     userInfo.style.display = 'flex';
+    userInfo.style.background = 'white';
+    userInfo.style.borderRadius = '24px';
+    userInfo.style.padding = '10px';
+    userInfo.style.borderColor = '#ff6b00';
     }
 
     function hide_info_zakazchik(Id){
